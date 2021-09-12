@@ -80,7 +80,7 @@ class skinchange_ui extends e_admin_ui
 	//	protected $preftabs        = array('General', 'Other' );
 		protected $prefs = array(
            /*  'allow_theme_select' => array('title'=> 'Allow theme select', 'tab'=>0, 'type'=>'boolean', 'data' => 'int', 'help'=>'', 'writeParms' => array()), */
-			'hiddenskins'		=> array('title'=> 'Hidden themes', 'tab'=>0, 'type'=>'method', 'data' => 'str', 'help'=>'', 'writeParms' => array()),
+			'hiddenskins'		=> array('title'=> 'Hidden themes [in selection]', 'tab'=>0, 'type'=>'method', 'data' => 'str', 'help'=>'', 'writeParms' => array()),
 		); 
 
 	
@@ -120,8 +120,15 @@ class skinchange_form_ui extends e_admin_form_ui
 		}
 		closedir($handle);
  
-
-		switch($mode)
+        /* display actual user skin list */
+        $ue = e107::getUserExt();
+        $tmp = $ue->getFieldValues('user_plugin_skinchange_skin');
+        $userSkins = explode(",", $tmp);
+ 
+        $message = "Available themes in user profile: ".$tmp. ". The unchecked list bellow should be the same.";
+        $output = e107::getMessage()->addInfo($message)->render(); 
+		
+        switch($mode)
 		{			
 			case 'write': // Edit Page
 				 	$directory = opendir(e_THEME);

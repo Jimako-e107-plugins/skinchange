@@ -24,3 +24,11 @@ add file skinchange.xml in the theme folder.  All themes have to use the same la
 This plugin is just for theme development purpose for now. Don't use it, if you don't know what you are doing. 
 
 
+# Changelog
+
+## Version 1.0.1
+- first version, used on demo site
+
+## Version 1.0.2
+- added userfield back (deleted by mistake)
+- tested if sitetheme is listed in UEA fields
